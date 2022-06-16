@@ -1,4 +1,4 @@
-package com.github.romankh3.image.comparison;
+package com.github.RileyMoore01.image.comparison;
 
 import com.github.romankh3.image.comparison.model.ExcludedAreas;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
