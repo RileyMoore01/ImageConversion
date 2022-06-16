@@ -1,7 +1,7 @@
-package com.github.romankh3.image.comparison;
+package com.github.RileyMoore01.image.comparison;
 
-import com.github.romankh3.image.comparison.exception.ImageComparisonException;
-import com.github.romankh3.image.comparison.exception.ImageNotFoundException;
+import com.github.RileyMoore01.image.comparison.exception.ImageComparisonException;
+import com.github.RileyMoore01.image.comparison.exception.ImageNotFoundException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
