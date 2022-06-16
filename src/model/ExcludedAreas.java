@@ -1,4 +1,4 @@
-package com.github.romankh3.image.comparison.model;
+package com.github.RileyMoore01.image.comparison.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
