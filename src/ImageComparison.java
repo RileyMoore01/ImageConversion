@@ -1,9 +1,9 @@
 package com.github.RileyMoore01.image.comparison;
 
-import com.github.romankh3.image.comparison.model.ExcludedAreas;
-import com.github.romankh3.image.comparison.model.ImageComparisonResult;
-import com.github.romankh3.image.comparison.model.ImageComparisonState;
-import com.github.romankh3.image.comparison.model.Rectangle;
+import com.github.RileyMoore01.image.comparison.model.ExcludedAreas;
+import com.github.RileyMoore01.image.comparison.model.ImageComparisonResult;
+import com.github.RileyMoore01.image.comparison.model.ImageComparisonState;
+import com.github.RileyMoore01.image.comparison.model.Rectangle;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.github.romankh3.image.comparison.ImageComparisonUtil.getDifferencePercent;
+import static com.github.RileyMoore01.image.comparison.ImageComparisonUtil.getDifferencePercent;
 import static java.util.Collections.emptyList;
 
 /**
