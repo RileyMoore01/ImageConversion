@@ -1,4 +1,4 @@
-package com.github.romankh3.image.comparison.exception;
+package com.github.RileyMoore01.image.comparison.exception;
 
 /**
  * A {@link RuntimeException} that is thrown in case of an image comparison failures.
