@@ -1,1 +1,2 @@
-Compare Images with this repository
+raspistill -o ~/Pictures/name
+  -vf to flip the camera
