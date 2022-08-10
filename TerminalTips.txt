@@ -1,1 +1,2 @@
 nano programName - opens the c file in terminal (ctrl + X to exit)
+gcc -o name name.py - runs a c file
