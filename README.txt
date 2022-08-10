@@ -1,3 +1,12 @@
+------------------------------
+--         NOTES            --
+------------------------------
+There is only 2 3.3 VDC GPIO pins, which will have to be used by the laser and laser receiver. Then we will need an external fan as it is the easiest replacement.
+
+
+
+-------------------------------
+
 raspistill -o ~/Pictures/name
   -vf to flip the camera
 
