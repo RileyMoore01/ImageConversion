@@ -13,3 +13,7 @@ raspistill -o ~/Pictures/name
 Laser:
      Pin 17 (9 down from the first row)
      Ground - Pin 20 (One up and one over)
+     
+Fan:
+  Pin 1 (Red)
+  Ground - Pin 14 (white)
