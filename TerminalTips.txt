@@ -1,0 +1,1 @@
+nano programName - opens the c file in terminal (ctrl + X to exit)
