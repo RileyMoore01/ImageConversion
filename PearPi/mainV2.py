@@ -42,6 +42,7 @@ def Compare():
     if diff.getbbox():
         buzzer.on()
         diff.show()
+        easygui.msgbox("This shirt needs to be checked", title="ERROR")
 
 
 while True:
