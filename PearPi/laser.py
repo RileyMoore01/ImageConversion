@@ -3,7 +3,7 @@ import sys
 import easygui
 import wiringpi
 
-from gpiozero import LightSensor
+from gpiozero import LightSensor, Buzzer
 from time import sleep
 from matplotlib.pyplot import imread
 from scipy.linalg import norm
