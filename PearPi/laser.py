@@ -12,6 +12,7 @@ from numpy import sum, average
 #index for referencing the right image
 index = 0
 ldr = LightSensor(4)
+buzzer = Buzzer(17)
 
 #--------------------------------
 #       Take Picture           --
@@ -70,5 +71,3 @@ while True:
     if ldr.value > 0.5:
         captureImage(index)
         index = index + 1
-        
-
