@@ -27,12 +27,9 @@ def captureImage(index):
 #--------------------------------
 #Read two images, convert to grayscale, compare and print results
 def Compare():
-    img1 = Image.open("set1.jpg")
-    img2 = Image.open("set2.jpg")
+    img1 = Image.open("newCable.jpg")
+    img2 = Image.open("newCable2.jpg")
     img2 = img2.resize(img1.size)
-
-    img1.show()
-    img2.show()
 
     gray1 = ImageOps.grayscale(img1)
     gray2 = ImageOps.grayscale(img2)
@@ -44,7 +41,9 @@ def Compare():
         diff.show()
         easygui.msgbox("This shirt needs to be checked", title="ERROR")
 
-
+#--------------------------------
+#       Laser Detection        --
+#--------------------------------
 while True:
     sleep(0.3)
     print(ldr.value)
