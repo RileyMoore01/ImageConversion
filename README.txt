@@ -22,3 +22,5 @@ Fan:
   https://stackoverflow.com/questions/44496249/mark-the-difference-between-2-pictures-in-python
   
   sensor: https://www.youtube.com/watch?v=LLzRWzszbzQ
+
+https://www.quora.com/How-do-you-connect-a-photoelectric-sensor-to-a-Raspberry-pi
