@@ -12,15 +12,13 @@ from PIL import Image, ImageChops, ImageOps
 
 #index for referencing the right image
 index = 0
-ldr = LightSensor(4)
 buzzer = Buzzer(17)
+# ldr = LightSensor(4)
 
 #--------------------------------
 #       Take Picture           --
 #--------------------------------
 def captureImage(index):
-    subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
-    sleep(5)
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/pic'+str(index)+'.jpg']),shell=True)
     Compare()
 
@@ -29,9 +27,7 @@ def captureImage(index):
 #--------------------------------
 #Read two images, convert to grayscale, compare and print results
 def Compare():
-    #Reference image
     img1 = Image.open("Images/ref.jpg")
-    #img2 = Image.open("Images/ref.jpg")
     img2 = Image.open("Images/pic"+str(index)+".jpg")
     img2 = img2.resize(img1.size)
 
@@ -53,7 +49,5 @@ def Compare():
 #--------------------------------
 while True:
     sleep(5)
-    print(ldr.value)
-    #if ldr.value > 0.5:
     captureImage(index)
     index = index + 1

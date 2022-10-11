@@ -22,7 +22,9 @@ class Window(Frame):
         exitButton = Button(self, text="Exit", command=self.clickExitButton)
 
         ###   FEATURE   ###
-        slider = Scale(master, from_=0, to=100)
+        slider = Scale(master, from_=0, to=100, orient=HORIZONTAL)
+        slider.pack()
+        print(slider)
 
         ###   PLACEMENTS   ###
         cameraOn.place(x=10, y=5)
