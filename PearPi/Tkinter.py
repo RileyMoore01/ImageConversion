@@ -1,6 +1,6 @@
 import subprocess
 
-from picamera import PiCamera
+# from picamera import PiCamera
 from time import sleep
 from tkinter import *
 
@@ -15,18 +15,31 @@ class Window(Frame):
 
         self.pack(fill=BOTH, expand=1)
 
+        ###    BUTTONS   ###
         cameraOn = Button(self, text="On/Off", command=self.clickCamOn)
         takeRefImage = Button(self, text="Ref", command=self.clickRefImage)
+        runProgram = Button(self, text="Run", command=self.clickRun)
         exitButton = Button(self, text="Exit", command=self.clickExitButton)
 
-        takeRefImage.place(x=50,y=50)
-        exitButton.place(x=0, y=0)
+        ###   FEATURE   ###
+        slider = Scale(master, from_=0, to=100)
+
+        ###   PLACEMENTS   ###
+        cameraOn.place(x=10, y=5)
+        takeRefImage.place(x=65,y=5)
+        runProgram.place(x=275,y=140)
+        exitButton.place(x=275, y=170)
+        slider.place(x=10, y=150)
+
+    def clickRun(self):
+        mainV2()
 
     def clickCamOn(self):
-        camera = PiCamera()
-        camera.start_preview()
-        sleep(10)
-        camera.stop_preview()
+        print("uncomment this code")
+        # camera = PiCamera()
+        # camera.start_preview()
+        # sleep(20)
+        # camera.stop_preview()
 
     def clickRefImage(self):
         subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
