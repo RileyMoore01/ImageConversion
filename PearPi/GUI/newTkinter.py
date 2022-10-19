@@ -13,15 +13,14 @@ DISPLAY_THRES = Label()
 
 ###   Window   ###
 win=Tk()
-win.geometry("700x350")
+win.geometry("800x450")
 win.config(bg='black')
 win.wm_title("Pear Pi")
 
 
-
 ###   Functions   ###
 def cal_sum():
-   t1=int(a.get())
+    t1=int(a.get())
 #    label.config(text=t1)
 
 def clickRun(self):
