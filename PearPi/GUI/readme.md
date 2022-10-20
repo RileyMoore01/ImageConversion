@@ -1,1 +1,3 @@
-Try pyautogui if all else fails
+*** Other Options ***
+Pyautogui
+PyQt5
