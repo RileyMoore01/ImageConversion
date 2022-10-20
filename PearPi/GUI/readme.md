@@ -1,3 +1,3 @@
-**Other Options**
-Pyautogui
-PyQt5
+**Other Options**__
+Pyautogui__
+PyQt5__
