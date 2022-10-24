@@ -11,7 +11,7 @@ THRESHOLD = 0
 ###   Window   ###
 win=Tk()
 win.geometry("700x350")
-win.config(bg='black')
+win.config(bg='white')
 win.wm_title("Pear Pi")
 
 
@@ -42,6 +42,9 @@ def sliderChanged(self, val):
     DISPLAY_THRES.config(font =("Courier", 20))
     DISPLAY_THRES.place(x=10,y=80)
 
+def my_command():
+   text.config(text= "You have clicked Me...")
+
 def clickExitButton(self):
     exit()
 
@@ -57,6 +60,12 @@ exitButton = Button(win, text="Exit", command=clickExitButton)
 
 
 ###    IMAGE BUTTONS   ###
+click_btn= PhotoImage(file='camera.jpg')
+img_label= Label(image=click_btn)
+button= Button(win, image=click_btn,command= my_command,borderwidth=0)
+button.pack(pady=30)
+text= Label(win, text= "")
+text.pack(pady=30)
 
 
 
