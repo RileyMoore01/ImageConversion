@@ -1,14 +1,12 @@
 # import subprocess
 
 from tkinter import *
-# from picamera import PiCamera
+from PIL import ImageTk, Image
 from time import sleep
+# from picamera import PiCamera 
 
 ###   Global Variables   ###
-REF = "ref.jpg"
 THRESHOLD = 0
-DISPLAY_THRES = Label()
-
 
 
 ###   Window   ###
@@ -21,30 +19,35 @@ win.wm_title("Pear Pi")
 ###   Functions   ###
 def cal_sum():
     t1=int(a.get())
+    if(t1>=0 | t1 < 0):
+        print(t1)
+    else:
+        t1 = 0
+        print(t1)
 #    label.config(text=t1)
 
-def clickRun(self):
+def clickRun():
     print("uncomment this code")
     # mainV2()
 
-def clickCamOn(self):
+def clickCamOn():
     print("uncomment this code")
     # camera = PiCamera()
     # camera.start_preview()
     # sleep(20)
     # camera.stop_preview()
 
-def clickRefImage(self):
+def clickRefImage():
     print("uncomment this code")
     # subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 def sliderChanged(self, val):
     THRESHOLD = val
-    DISPLAY_THRES = Label(self.master, text=f"{THRESHOLD}")
-    DISPLAY_THRES.config(font =("Courier", 20))
-    DISPLAY_THRES.place(x=10,y=80)
+    displayThreshold = Label(self.master, text=f"{THRESHOLD}")
+    displayThreshold.config(font =("Courier", 20))
+    displayThreshold.place(x=10,y=80)
 
-def clickExitButton(self):
+def clickExitButton():
     exit()
 
 
@@ -60,8 +63,8 @@ exitButton = Button(win, text="Exit", command=clickExitButton)
 
 ###   Slider   ###
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=sliderChanged)
-DISPLAY_THRES = Label(win, text=f"{THRESHOLD}")
-DISPLAY_THRES.config(font =("Courier", 15))
+displayThreshold = Label(win, text=f"{THRESHOLD}")
+displayThreshold.config(font =("Courier", 15))
 display = Label(win, text="Detail")
 thresRange = Label(win, text="(0-100)")
 
@@ -73,7 +76,7 @@ takeRefImage.place(x=85, y=10)
 runProgram.place(x=140,y=10)
 exitButton.place(x=200, y=10)
 slider.place(x=20, y=135)
-DISPLAY_THRES.place(x=20,y=80)
+displayThreshold.place(x=20,y=80)
 display.place(x=60,y=80)
 
 
@@ -84,6 +87,9 @@ a=Entry(win, width=35)
 a.pack()
 Button(win, text="Set", command=cal_sum).pack()
 
+img = ImageTk.PhotoImage(Image.open("video.jpg"))  
+l=Label(image=img)
+l.pack()
 
 
 win.mainloop()
