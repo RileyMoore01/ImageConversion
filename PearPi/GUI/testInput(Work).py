@@ -1,49 +1,108 @@
-# import subprocess
+import subprocess
+import sys
+# import easygui
+# import wiringpi
 
 from tkinter import *
-# from picamera import PiCamera
 from time import sleep
+from time import sleep
+from matplotlib.pyplot import imread
+from PIL import Image, ImageChops, ImageOps
+# from gpiozero import LightSensor, Buzzer
+# from scipy.linalg import norm
+# from numpy import sum, average
 
-###   Global Variables   ###
+############################################################
+##                      Global Variables                  ##
+############################################################
 THRESHOLD = 0
+TIMEDELAY = 0
+NEWTIMEDELAY = 0
+BUTTON_HEIGHT = 150
+BUTTON_WIDTH = 150
+INDEX = 0
 
 
-###   Window   ###
+############################################################
+##                      Main                              ##
+############################################################
+
+def main():
+    global INDEX, THRESHOLD
+    INDEX = 0
+    thres = THRESHOLD % 10
+    print(thres)
+    # buzzer = Buzzer(17)
+
+    #--------------------------------
+    #       Compare Images         --
+    #--------------------------------
+    def Compare():
+        img1 = Image.open("Images/ref.jpg")
+        img2 = Image.open("Images/pic"+str(INDEX)+".jpg")
+        img2 = img2.resize(img1.size)
+
+        #Grayscale
+        img1 = img1.convert('L')
+        img2 = img2.convert('L')
+
+        #Threshold
+        img1 = img1.point(lambda p: 255 if p > thres else 0)
+        img2 = img2.point(lambda p: 255 if p > thres else 0)
+
+        #Monochrome
+        img1 = img1.convert('1')
+        img2 = img2.convert('1')
+
+        diff = ImageChops.difference(img1, img2)
+
+        if diff.getbbox():
+            # buzzer.on()
+            sleep(1)
+            # buzzer.off()
+            diff.show()
+            #16x20
+
+
+############################################################
+##                      Window                            ##
+############################################################
 win=Tk()
 win.geometry("700x350")
 win.config(bg='white')
 win.wm_title("Pear Pi")
 
 
+############################################################
+##                      Functions                         ##
+############################################################
+def RunProgram():
+    print("*** Running program ***")
+    main()
 
-###   Functions   ###
-def cal_sum():
-   t1=int(a.get())
-#    label.config(text=t1)
-
-def clickRun(self):
-    print("uncomment this code")
-    # mainV2()
-
-def clickCamOn(self):
-    print("uncomment this code")
+def PositionCamera():
+    print("*** Turning on the camera ***")
     # camera = PiCamera()
     # camera.start_preview()
     # sleep(20)
     # camera.stop_preview()
 
-def clickRefImage(self):
-    print("uncomment this code")
+def TakeReferenceImage():
+    print("*** Taking reference Image ***")
     # subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
-def sliderChanged(self, val):
+def Slider(val):
     THRESHOLD = val
-    DISPLAY_THRES = Label(self.master, text=f"{THRESHOLD}")
-    DISPLAY_THRES.config(font =("Courier", 20))
-    DISPLAY_THRES.place(x=10,y=80)
 
-def my_command():
-   text.config(text= "You have clicked Me...")
+def TimeDelayAdd():
+    global TIMEDELAY
+    TIMEDELAY = TIMEDELAY + 1
+    timeDelayDisplay.config(text=f'{TIMEDELAY}')
+
+def TimeDelaySub():
+    global TIMEDELAY
+    TIMEDELAY = TIMEDELAY - 1
+    timeDelayDisplay.config(text=f'{TIMEDELAY}')
 
 def clickExitButton(self):
     exit()
@@ -51,50 +110,92 @@ def clickExitButton(self):
 
 
 
-###    BUTTONS   ###
-cameraOn = Button(win, text="On/Off", command=clickCamOn)
-takeRefImage = Button(win, text="Ref", command=clickRefImage)
-runProgram = Button(win, text="Run", command=clickRun)
-exitButton = Button(win, text="Exit", command=clickExitButton)
+############################################################
+##                      Image Buttons                     ##
+############################################################
+
+# Position button  ---------------------------------------------------------------------
+positionButton = PhotoImage(file='GUI/powerOn.gif')
+positionButton = positionButton.subsample(3, 3)
+
+cameraBtn_label = Label(image=positionButton)
+cameraBtn_label.config(font=('Helvatical bold', 10), bg='white')
+
+button= Button(win, image=positionButton,command= PositionCamera,borderwidth=0
+    , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
+button.pack(pady=0, side=LEFT, anchor=N)
+
+
+# Reference Image Button  ---------------------------------------------------------------
+refButton = PhotoImage(file='GUI/camera.gif')
+refButton = refButton.subsample(2, 2)
+
+cameraBtn_label2 = Label(image=refButton)
+cameraBtn_label2.config(font=('Helvatical bold', 5), bg='white')
+
+button2 = Button(win, image=refButton,command= TakeReferenceImage,borderwidth=0
+    , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
+button2.pack(pady=0, side=LEFT, anchor=N)
+
+
+# Run program button  -------------------------------------------------------------------
+RunButton = PhotoImage(file='GUI/runProgram.gif')
+RunButton = RunButton.subsample(2, 2)
+
+cameraBtn_label3 = Label(image=RunButton)
+cameraBtn_label2.config(font=('Helvatical bold', 5), bg='white')
+
+button3 = Button(win, image=RunButton,command= RunProgram,borderwidth=0
+    , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
+button3.pack(pady=0, side=LEFT, anchor=N)
+
+
+# Time Delay Button(s)  --------------------------------------------------------------------
+
+TimeDelayAddImage = PhotoImage(file='GUI/add.gif')
+TimeDelayAddImage = TimeDelayAddImage.subsample(2, 2)
+
+timeDelayLabel = Label(image=TimeDelayAddImage)
+timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
+
+button4 = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth=0,
+    height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
+button4.place(x=530, y=200)
+
+
+TimeDelaySubImage = PhotoImage(file='GUI/subtract.gif')
+TimeDelaySubImage = TimeDelaySubImage.subsample(2, 2)
+
+timeDelayLabel = Label(image=TimeDelaySubImage)
+timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
+
+button5 = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0
+    , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
+button5.place(x=400, y=200)
 
 
 
-###    IMAGE BUTTONS   ###
-click_btn= PhotoImage(file='camera.jpg')
-img_label= Label(image=click_btn)
-button= Button(win, image=click_btn,command= my_command,borderwidth=0)
-button.pack(pady=30)
-text= Label(win, text= "")
-text.pack(pady=30)
+############################################################
+##                      Slider                            ##
+############################################################
+slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
+    , sliderlength=50, length=400, bg='white')
+slider.place(x=20, y=275)
 
 
 
-###   Slider   ###
-slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=sliderChanged)
-DISPLAY_THRES = Label(win, text=f"{THRESHOLD}")
-DISPLAY_THRES.config(font =("Courier", 15))
-display = Label(win, text="Detail")
-thresRange = Label(win, text="(0-100)")
+############################################################
+##                      Labels                            ##
+############################################################
 
+display = Label(win, text="Detail", font=('Helvetica bold', 20), bg='white')
+display.place(x=30, y=200)
 
+thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 10), bg='white')
+thresRange.place(x=30, y=250)
 
-###   PLACEMENTS   ###
-cameraOn.place(x=15,y=10)
-takeRefImage.place(x=85, y=10)
-runProgram.place(x=140,y=10)
-exitButton.place(x=200, y=10)
-slider.place(x=30, y=275)
-DISPLAY_THRES.place(x=20,y=80)
-display.place(x=60,y=80)
-
-
-
-###   Labels   ###
-Label(win, text="Time Delay", font=('Calibri 10')).pack()
-a=Entry(win, width=35)
-a.pack()
-Button(win, text="Set", command=cal_sum).pack()
-
-
+timeDelayDisplay = Label(win, text=f"{TIMEDELAY}", font=('Helvetica bold', 40), bg='white')
+timeDelayDisplay.place(x=520, y=150)
 
 win.mainloop()
+

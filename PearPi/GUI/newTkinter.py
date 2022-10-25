@@ -1,9 +1,8 @@
 # import subprocess
 
 from tkinter import *
-from PIL import ImageTk, Image
+# from picamera import PiCamera
 from time import sleep
-# from picamera import PiCamera 
 
 ###   Global Variables   ###
 THRESHOLD = 0
@@ -11,43 +10,42 @@ THRESHOLD = 0
 
 ###   Window   ###
 win=Tk()
-win.geometry("800x450")
-win.config(bg='black')
+win.geometry("700x350")
+win.config(bg='white')
 win.wm_title("Pear Pi")
+
 
 
 ###   Functions   ###
 def cal_sum():
     t1=int(a.get())
-    if(t1>=0 | t1 < 0):
-        print(t1)
-    else:
-        t1 = 0
-        print(t1)
 #    label.config(text=t1)
 
-def clickRun():
+def clickRun(self):
     print("uncomment this code")
     # mainV2()
 
-def clickCamOn():
+def clickCamOn(self):
     print("uncomment this code")
     # camera = PiCamera()
     # camera.start_preview()
     # sleep(20)
     # camera.stop_preview()
 
-def clickRefImage():
+def clickRefImage(self):
     print("uncomment this code")
     # subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 def sliderChanged(self, val):
     THRESHOLD = val
-    displayThreshold = Label(self.master, text=f"{THRESHOLD}")
-    displayThreshold.config(font =("Courier", 20))
-    displayThreshold.place(x=10,y=80)
+    DISPLAY_THRES = Label(self.master, text=f"{THRESHOLD}")
+    DISPLAY_THRES.config(font =("Courier", 20))
+    DISPLAY_THRES.place(x=10,y=80)
 
-def clickExitButton():
+def my_command():
+    text.config(text= "You have clicked Me...")
+
+def clickExitButton(self):
     exit()
 
 
@@ -61,10 +59,23 @@ exitButton = Button(win, text="Exit", command=clickExitButton)
 
 
 
+###    IMAGE BUTTONS   ###
+click_btn = PhotoImage(file='GUI/camera.gif')
+click_btn = click_btn.subsample(2, 2)
+cameraBtn_label = Label(image=click_btn)
+cameraBtn_label.config(font=('Helvatical bold', 5))
+button= Button(win, image=click_btn,command= my_command,borderwidth=0
+    , height=65, width=65)
+button.pack(pady=30)
+text= Label(win, text= "")
+text.pack(pady=30)
+
+
+
 ###   Slider   ###
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=sliderChanged)
-displayThreshold = Label(win, text=f"{THRESHOLD}")
-displayThreshold.config(font =("Courier", 15))
+DISPLAY_THRES = Label(win, text=f"{THRESHOLD}")
+DISPLAY_THRES.config(font =("Courier", 15))
 display = Label(win, text="Detail")
 thresRange = Label(win, text="(0-100)")
 
@@ -75,8 +86,8 @@ cameraOn.place(x=15,y=10)
 takeRefImage.place(x=85, y=10)
 runProgram.place(x=140,y=10)
 exitButton.place(x=200, y=10)
-slider.place(x=20, y=135)
-displayThreshold.place(x=20,y=80)
+slider.place(x=30, y=275)
+DISPLAY_THRES.place(x=20,y=80)
 display.place(x=60,y=80)
 
 
@@ -87,9 +98,6 @@ a=Entry(win, width=35)
 a.pack()
 Button(win, text="Set", command=cal_sum).pack()
 
-img = ImageTk.PhotoImage(Image.open("video.jpg"))  
-l=Label(image=img)
-l.pack()
 
 
 win.mainloop()
