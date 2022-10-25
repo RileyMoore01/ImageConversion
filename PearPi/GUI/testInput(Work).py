@@ -171,7 +171,7 @@ timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 
 button5 = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
-button5.place(x=400, y=200)
+button5.place(x=420, y=200)
 
 
 
@@ -195,7 +195,10 @@ thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 10), bg='white')
 thresRange.place(x=30, y=250)
 
 timeDelayDisplay = Label(win, text=f"{TIMEDELAY}", font=('Helvetica bold', 40), bg='white')
-timeDelayDisplay.place(x=520, y=150)
+timeDelayDisplay.place(x=525, y=150)
+
+timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 15), bg='white')
+timeLabel.place(x=490, y=120)
 
 win.mainloop()
 
