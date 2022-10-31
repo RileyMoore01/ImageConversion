@@ -1,16 +1,16 @@
 import subprocess
 import sys
-import easygui
-import wiringpi
+# import easygui
+# import wiringpi
 
 from tkinter import *
 from time import sleep
 from time import sleep
 from matplotlib.pyplot import imread
 from PIL import Image, ImageChops, ImageOps
-from gpiozero import LightSensor, Buzzer
-from scipy.linalg import norm
-from numpy import sum, average
+# from gpiozero import LightSensor, Buzzer
+# from scipy.linalg import norm
+# from numpy import sum, average
 
 ############################################################
 ##                      Global Variables                  ##
@@ -32,7 +32,7 @@ def main():
     INDEX = 0
     thres = THRESHOLD % 10
     print(thres)
-    buzzer = Buzzer(17)
+    # buzzer = Buzzer(17)
 
     #--------------------------------
     #       Compare Images         --
@@ -57,9 +57,9 @@ def main():
         diff = ImageChops.difference(img1, img2)
 
         if diff.getbbox():
-            buzzer.on()
+            # buzzer.on()
             sleep(1)
-            buzzer.off()
+            # buzzer.off()
             diff.show()
             #16x20
 
@@ -82,14 +82,14 @@ def RunProgram():
 
 def PositionCamera():
     print("*** Turning on the camera ***")
-    camera = PiCamera()
-    camera.start_preview()
-    sleep(10)
-    camera.stop_preview()
+    # camera = PiCamera()
+    # camera.start_preview()
+    # sleep(20)
+    # camera.stop_preview()
 
 def TakeReferenceImage():
     print("*** Taking reference Image ***")
-    subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
+    # subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 def Slider(val):
     THRESHOLD = val
