@@ -11,6 +11,7 @@ from PIL import Image, ImageChops, ImageOps
 from gpiozero import LightSensor, Buzzer
 from scipy.linalg import norm
 from numpy import sum, average
+from picamera import PiCamera
 
 ############################################################
 ##                      Global Variables                  ##
@@ -115,61 +116,61 @@ def clickExitButton(self):
 ############################################################
 
 # Position button  ---------------------------------------------------------------------
-positionButton = PhotoImage(file='GUI/powerOn.gif')
+positionButton = PhotoImage(file='/home/pearpi/Desktop/powerOn.gif')
 positionButton = positionButton.subsample(3, 3)
 
 cameraBtn_label = Label(image=positionButton)
 cameraBtn_label.config(font=('Helvatical bold', 10), bg='white')
 
-button= Button(win, image=positionButton,command= PositionCamera,borderwidth=0
+button= Button(win, image=positionButton,command= PositionCamera,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 button.pack(pady=0, side=LEFT, anchor=N)
 
 
 # Reference Image Button  ---------------------------------------------------------------
-refButton = PhotoImage(file='GUI/camera.gif')
+refButton = PhotoImage(file='/home/pearpi/Desktop/camera.gif')
 refButton = refButton.subsample(2, 2)
 
 cameraBtn_label2 = Label(image=refButton)
 cameraBtn_label2.config(font=('Helvatical bold', 5), bg='white')
 
-button2 = Button(win, image=refButton,command= TakeReferenceImage,borderwidth=0
+button2 = Button(win, image=refButton,command= TakeReferenceImage,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 button2.pack(pady=0, side=LEFT, anchor=N)
 
 
 # Run program button  -------------------------------------------------------------------
-RunButton = PhotoImage(file='GUI/runProgram.gif')
+RunButton = PhotoImage(file='/home/pearpi/Desktop/runProgram.gif')
 RunButton = RunButton.subsample(2, 2)
 
 cameraBtn_label3 = Label(image=RunButton)
 cameraBtn_label2.config(font=('Helvatical bold', 5), bg='white')
 
-button3 = Button(win, image=RunButton,command= RunProgram,borderwidth=0
+button3 = Button(win, image=RunButton,command= RunProgram,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 button3.pack(pady=0, side=LEFT, anchor=N)
 
 
 # Time Delay Button(s)  --------------------------------------------------------------------
 
-TimeDelayAddImage = PhotoImage(file='GUI/add.gif')
+TimeDelayAddImage = PhotoImage(file='/home/pearpi/Desktop/add.gif')
 TimeDelayAddImage = TimeDelayAddImage.subsample(2, 2)
 
 timeDelayLabel = Label(image=TimeDelayAddImage)
 timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 
-button4 = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth=0,
+button4 = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth=0, highlightthickness=0,
     height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 button4.place(x=530, y=200)
 
 
-TimeDelaySubImage = PhotoImage(file='GUI/subtract.gif')
+TimeDelaySubImage = PhotoImage(file='/home/pearpi/Desktop/subtract.gif')
 TimeDelaySubImage = TimeDelaySubImage.subsample(2, 2)
 
 timeDelayLabel = Label(image=TimeDelaySubImage)
 timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 
-button5 = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0
+button5 = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 button5.place(x=420, y=200)
 
