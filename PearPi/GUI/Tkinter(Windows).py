@@ -115,7 +115,7 @@ def clickExitButton(self):
 ############################################################
 
 # Position button  ---------------------------------------------------------------------
-positionButton = PhotoImage(file='GUI/powerOn.gif')
+positionButton = PhotoImage(file='GUI/position.gif')
 positionButton = positionButton.subsample(3, 3)
 
 cameraBtn_label = Label(image=positionButton)
