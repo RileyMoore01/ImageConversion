@@ -115,8 +115,8 @@ def clickExitButton(self):
 ############################################################
 
 # Position button  ---------------------------------------------------------------------
-positionButton = PhotoImage(file='GUI/position.gif')
-positionButton = positionButton.subsample(3, 3)
+positionButton = PhotoImage(file='PearPi/GUI/position.gif')
+positionButton = positionButton.subsample(2, 2)
 
 cameraBtn_label = Label(image=positionButton)
 cameraBtn_label.config(font=('Helvatical bold', 10), bg='white')
@@ -127,7 +127,7 @@ button.pack(pady=0, side=LEFT, anchor=N)
 
 
 # Reference Image Button  ---------------------------------------------------------------
-refButton = PhotoImage(file='GUI/camera.gif')
+refButton = PhotoImage(file='PearPi/GUI/camera.gif')
 refButton = refButton.subsample(2, 2)
 
 cameraBtn_label2 = Label(image=refButton)
@@ -139,7 +139,7 @@ button2.pack(pady=0, side=LEFT, anchor=N)
 
 
 # Run program button  -------------------------------------------------------------------
-RunButton = PhotoImage(file='GUI/runProgram.gif')
+RunButton = PhotoImage(file='PearPi/GUI/runProgram.gif')
 RunButton = RunButton.subsample(2, 2)
 
 cameraBtn_label3 = Label(image=RunButton)
@@ -152,7 +152,7 @@ button3.pack(pady=0, side=LEFT, anchor=N)
 
 # Time Delay Button(s)  --------------------------------------------------------------------
 
-TimeDelayAddImage = PhotoImage(file='GUI/add.gif')
+TimeDelayAddImage = PhotoImage(file='PearPi/GUI/add.gif')
 TimeDelayAddImage = TimeDelayAddImage.subsample(2, 2)
 
 timeDelayLabel = Label(image=TimeDelayAddImage)
@@ -163,7 +163,7 @@ button4 = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth
 button4.place(x=530, y=200)
 
 
-TimeDelaySubImage = PhotoImage(file='GUI/subtract.gif')
+TimeDelaySubImage = PhotoImage(file='PearPi/GUI/subtract.gif')
 TimeDelaySubImage = TimeDelaySubImage.subsample(2, 2)
 
 timeDelayLabel = Label(image=TimeDelaySubImage)
