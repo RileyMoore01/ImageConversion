@@ -116,7 +116,7 @@ def clickExitButton(self):
 ############################################################
 
 # Position button  ---------------------------------------------------------------------
-positionButton = PhotoImage(file='/home/pearpi/Desktop/powerOn.gif')
+positionButton = PhotoImage(file='/home/pearpi/Desktop/position.gif')
 positionButton = positionButton.subsample(3, 3)
 
 cameraBtn_label = Label(image=positionButton)
