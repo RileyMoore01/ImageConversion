@@ -38,38 +38,37 @@ def main():
     #--------------------------------
     #       Compare Images         --
     #--------------------------------
-    def Compare():
-        img1 = Image.open("Images/ref.jpg")
-        img2 = Image.open("Images/pic"+str(INDEX)+".jpg")
-        img2 = img2.resize(img1.size)
+    img1 = Image.open("Images/ref.jpg")
+    img2 = Image.open("Images/pic"+str(INDEX)+".jpg")
+    img2 = img2.resize(img1.size)
 
-        #Grayscale
-        img1 = img1.convert('L')
-        img2 = img2.convert('L')
+    #Grayscale
+    img1 = img1.convert('L')
+    img2 = img2.convert('L')
 
-        #Threshold
-        img1 = img1.point(lambda p: 255 if p > thres else 0)
-        img2 = img2.point(lambda p: 255 if p > thres else 0)
+    #Threshold
+    img1 = img1.point(lambda p: 255 if p > thres else 0)
+    img2 = img2.point(lambda p: 255 if p > thres else 0)
 
-        #Monochrome
-        img1 = img1.convert('1')
-        img2 = img2.convert('1')
+    #Monochrome
+    img1 = img1.convert('1')
+    img2 = img2.convert('1')
 
-        diff = ImageChops.difference(img1, img2)
+    diff = ImageChops.difference(img1, img2)
 
-        if diff.getbbox():
-            buzzer.on()
-            sleep(1)
-            buzzer.off()
-            diff.show()
-            #16x20
+    if diff.getbbox():
+        buzzer.on()
+        sleep(1)
+        buzzer.off()
+        diff.show()
+        #16x20
 
 
 ############################################################
 ##                      Window                            ##
 ############################################################
 win=Tk()
-win.geometry("700x350")
+win.geometry("800x440")
 win.config(bg='white')
 win.wm_title("Pear Pi")
 
@@ -93,6 +92,7 @@ def TakeReferenceImage():
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 def Slider(val):
+    global THRESHOLD
     THRESHOLD = val
 
 def TimeDelayAdd():
