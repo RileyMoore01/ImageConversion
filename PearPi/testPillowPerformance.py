@@ -7,8 +7,8 @@ from PIL import ImageOps
 from PIL import ImageDraw
 
 
-img1 = Image.open("set1.jpg")
-img2 = Image.open("set2.jpg")
+img1 = Image.open("pic0.jpg")
+img2 = Image.open("ref.jpg")
 
 # draw = ImageDraw.Draw(img2)
 # diff_list_tuples = [diff[0:2], diff[2:]] if diff else [(None, None), (None, None)]
@@ -16,16 +16,16 @@ img2 = Image.open("set2.jpg")
 # img2.show()
 
 #Grayscale
-img1 = img1.convert('L')
-img2 = img2.convert('L')
+# img1 = img1.convert('L')
+# img2 = img2.convert('L')
 
-#Threshold
-img1 = img1.point(lambda p: 255 if p > 3 else 0)
-img2 = img2.point(lambda p: 255 if p > 3 else 0)
+# #Threshold
+# img1 = img1.point(lambda p: 255 if p > 3 else 0)
+# img2 = img2.point(lambda p: 255 if p > 3 else 0)
 
 #Monochrome
-img1 = img1.convert('1')
-img2 = img2.convert('1')
+# img1 = img1.convert('1')
+# img2 = img2.convert('1')
 
 diff = ImageChops.difference(img1, img2)
 
