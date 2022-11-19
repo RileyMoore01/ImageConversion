@@ -28,3 +28,10 @@ Fan:
 https://www.quora.com/How-do-you-connect-a-photoelectric-sensor-to-a-Raspberry-pi
 
 https://community.element14.com/learn/learning-center/stem-academy/b/blog/posts/reading-a-photo-sensor-with-the-raspberry-pi-b
+
+
+sudo apt-get install build-essential git cmake pkg-config libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev libatlas-base-dev gfortran
+
+git clone https://github.com/Itseez/opencv.git && cd opencv &&git checkout 3.0.0
+
+
