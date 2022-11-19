@@ -83,7 +83,7 @@ def main():
 ##                      Window                            ##
 ############################################################
 win=Tk()
-win.geometry("800x440")
+win.geometry("1050x535")
 win.config(bg='white')
 win.wm_title("Pear Pi")
 
@@ -113,13 +113,25 @@ def Slider(val):
 
 def TimeDelayAdd():
     global TIMEDELAY
-    TIMEDELAY = TIMEDELAY + 1
-    timeDelayDisplay.config(text=f'{TIMEDELAY}')
+    if TIMEDELAY >= 0:
+        TIMEDELAY = TIMEDELAY + 1
+        timeDelayDisplay.config(text=f'{TIMEDELAY}')
+
+    if TIMEDELAY < 10:
+        timeDelayDisplay.config(timeDelayDisplay.place(x=840, y=65))
+    else:
+        timeDelayDisplay.config(timeDelayDisplay.place(x=820, y=65))
 
 def TimeDelaySub():
     global TIMEDELAY
-    TIMEDELAY = TIMEDELAY - 1
-    timeDelayDisplay.config(text=f'{TIMEDELAY}')
+    if TIMEDELAY > 0:
+        TIMEDELAY = TIMEDELAY - 1
+        timeDelayDisplay.config(text=f'{TIMEDELAY}')
+
+    if TIMEDELAY < 10:
+        timeDelayDisplay.config(timeDelayDisplay.place(x=840, y=65))
+    else:
+        timeDelayDisplay.config(timeDelayDisplay.place(x=815, y=65))
 
 def clickExitButton():
     exit()
@@ -133,49 +145,52 @@ def clickExitButton():
 
 # Position button  ---------------------------------------------------------------------
 positionIcon = PhotoImage(file='PearPi/GUI/position.gif')
-positionIcon = positionIcon.subsample(2, 2)
+# positionIcon = positionIcon.subsample(2, 2)
 
 positionLabel = Label(image=positionIcon)
 positionLabel.config(font=('Helvatical bold', 10), bg='white')
 
 positionButton= Button(win, image=positionIcon,command= PositionCamera,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
-positionButton.pack(pady=0, side=LEFT, anchor=N)
+positionButton.place(x=0,y=10)
+# positionButton.pack(pady=50, side=LEFT, anchor=N)
 
 
 # Reference Image Button  ---------------------------------------------------------------
 referenceIcon = PhotoImage(file='PearPi/GUI/camera.gif')
-referenceIcon = referenceIcon.subsample(2, 2)
+#referenceIcon = referenceIcon.subsample(2, 2)
 
 referenceLabel = Label(image=referenceIcon)
 referenceLabel.config(font=('Helvatical bold', 5), bg='white')
 
 refButton = Button(win, image=referenceIcon,command= TakeReferenceImage,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
-refButton.pack(pady=0, side=LEFT, anchor=N)
+refButton.place(x=220,y =10)
+# refButton.pack(pady=50, side=LEFT, anchor=N)
 
 
 # Run program button  -------------------------------------------------------------------
 runIcon = PhotoImage(file='PearPi/GUI/runProgram.gif')
-runIcon = runIcon.subsample(2, 2)
+#runIcon = runIcon.subsample(2, 2)
 
 runProgramLabel = Label(image=runIcon)
 runProgramLabel.config(font=('Helvatical bold', 5), bg='white')
 
 runButton = Button(win, image=runIcon,command= RunProgram,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
-runButton.place(x=580,y=280)
+runButton.place(x=880,y=370)
 
 # Exit program button  -------------------------------------------------------------------
 exitIcon = PhotoImage(file='PearPi/GUI/iconExit.gif')
-exitIcon = exitIcon.subsample(2, 2)
+#exitIcon = exitIcon.subsample(2, 2)
 
 exitLabel = Label(image=exitIcon)
 exitLabel.config(font=('Helvatical bold', 5), bg='white')
 
 exitButton = Button(win, image=exitIcon,command=clickExitButton,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
-exitButton.pack(pady=0, side=LEFT, anchor=N)
+exitButton.place(x=450,y =10)
+# exitButton.pack(pady=20, side=LEFT, anchor=N)
 
 
 # Time Delay Button(s)  --------------------------------------------------------------------
@@ -188,7 +203,7 @@ timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 
 timeDelayAddButton = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth=0, highlightthickness=0,
     height=100, width=100, bg='white')
-timeDelayAddButton.place(x=670, y=120)
+timeDelayAddButton.place(x=870, y=135)
 
 
 TimeDelaySubImage = PhotoImage(file='PearPi/GUI/subtract.gif')
@@ -199,7 +214,7 @@ timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 
 timeDelaySubButton = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0, highlightthickness=0
     , height=100, width=100, bg='white')
-timeDelaySubButton.place(x=540, y=120)
+timeDelaySubButton.place(x=740, y=135)
 
 
 
@@ -208,7 +223,7 @@ timeDelaySubButton.place(x=540, y=120)
 ############################################################
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
     , sliderlength=50, length=400, bg='white', showvalue=False)
-slider.place(x=20, y=355)
+slider.place(x=20, y=475)
 
 
 
@@ -216,20 +231,20 @@ slider.place(x=20, y=355)
 ##                      Labels                            ##
 ############################################################
 
-display = Label(win, text="Detail", font=('Helvetica bold', 25), bg='white')
-display.place(x=30, y=250)
+display = Label(win, text="Detail", font=('Helvetica bold', 30), bg='white')
+display.place(x=30, y=350)
 
-thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 10), bg='white')
-thresRange.place(x=50, y=300)
+thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 18), bg='white')
+thresRange.place(x=50, y=400)
 
-displayThreshold = Label(win, text=f"{THRESHOLD}", font=('Helvetica bold', 40), bg='white')
-displayThreshold.place(x=170, y=240)
+displayThreshold = Label(win, text=f"{THRESHOLD}", font=('Helvetica bold', 50), bg='white')
+displayThreshold.place(x=170, y=350)
 
 timeDelayDisplay = Label(win, text=f"{TIMEDELAY}", font=('Helvetica bold', 40), bg='white')
-timeDelayDisplay.place(x=635, y=35)
+timeDelayDisplay.place(x=840, y=65)
 
-timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 15), bg='white')
-timeLabel.place(x=600, y=10)
+timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 25), bg='white')
+timeLabel.place(x=775, y=10)
 
 win.mainloop()
 
