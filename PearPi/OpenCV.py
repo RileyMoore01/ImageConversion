@@ -35,11 +35,19 @@ def CompareImages():
     global INDEX, THRESHOLD, BUZZER
     INDEX = 0
     
-    thres = int(THRESHOLD) / 10
-    thres = int(thres)
-    
-    if thres == 0:
-        thres = 1
+    thres = int(THRESHOLD)
+    if thres == 100:
+        thres = 4
+    elif thres > 89 & thres < 100:
+        thres = 8
+    elif thres > 79 & thres < 90:
+        thres = 10
+    elif thres > 69 & thres < 80:
+        thres = 15
+    elif thres > 59 & thres < 70:
+        thres = 20
+    else:
+        thres = 30
     
     print(thres)
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
@@ -60,8 +68,9 @@ def CompareImages():
 
     error, diff = mse(img1, img2)
     print("Image matching Error between the two images:",error)
-
-    cv2.imshow("difference", diff)
+    
+    if error > thres:
+        cv2.imshow("difference", diff)
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
