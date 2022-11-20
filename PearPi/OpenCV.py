@@ -71,6 +71,9 @@ def CompareImages():
     
     if error > thres:
         cv2.imshow("difference", diff)
+        BUZZER.on()
+        sleep(1)
+        BUZZER.off()
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
