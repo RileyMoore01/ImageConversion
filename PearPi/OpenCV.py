@@ -44,7 +44,7 @@ def CompareImages():
     print(thres)
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
     img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
-    img2 = img2.resize(img1.size)
+#    img2 = img2.resize(img1.size)
 
     # convert the images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -62,8 +62,8 @@ def CompareImages():
     print("Image matching Error between the two images:",error)
 
     cv2.imshow("difference", diff)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
 
     #Grayscale
     #img1 = img1.convert('L')
@@ -129,6 +129,7 @@ def PositionCamera():
     camera.start_preview()
     sleep(10)
     camera.stop_preview()
+    camera.close()
 
 def TakeReferenceImage():
     print("*** Taking reference Image ***")
