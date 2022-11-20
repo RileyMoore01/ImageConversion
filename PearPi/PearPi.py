@@ -249,4 +249,3 @@ timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 25), bg='white
 timeLabel.place(x=775, y=10)
 
 win.mainloop()
-
