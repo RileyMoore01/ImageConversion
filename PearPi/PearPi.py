@@ -43,6 +43,8 @@ def CompareImages():
     img1 = Image.open("/home/pearpi/Desktop/Images/ref.jpg")
     img2 = Image.open("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
     img2 = img2.resize(img1.size)
+    
+    #remove this portion to a seperate container file
 
     #Grayscale
     #img1 = img1.convert('L')
