@@ -18,6 +18,7 @@ from picamera import PiCamera
 ##                      Global Variables                  ##
 ############################################################
 THRESHOLD = 0
+REVTHRESHOLD = 0
 TIMEDELAY = 0
 NEWTIMEDELAY = 0
 BUTTON_HEIGHT = 150
@@ -32,30 +33,26 @@ BUZZER = Buzzer(17)
 ##                      Main                              ##
 ############################################################
 
+def ReverseThreshold(thres):
+    global REVTHRESHOLD
+    result = 0
+    while (thres < 100):
+        result += 1
+    REVTHRESHOLD = result
+
 
 
 def CompareImages():
-    global INDEX, THRESHOLD, BUZZER
-    INDEX = 0
+    global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER
     
-    thres = int(THRESHOLD)
-    if thres == 100:
-        thres = 4
-    elif thres > 89 & thres < 100:
-        thres = 8
-    elif thres > 79 & thres < 90:
-        thres = 10
-    elif thres > 69 & thres < 80:
-        thres = 15
-    elif thres > 59 & thres < 70:
-        thres = 20
-    else:
-        thres = 30
+    INDEX = 0
+    thres = int(REVTHRESHOLD)
     
     print(thres)
+
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
     img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
-#    img2 = img2.resize(img1.size)
+#   img2 = img2.resize(img1.size)
 
     # convert the images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -104,7 +101,6 @@ def CompareImages():
 def captureImage():
     global INDEX
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/pic'+str(INDEX)+'.jpg']),shell=True)
-
 
 def main():
     global TIMEDELAY
