@@ -7,12 +7,12 @@ import numpy as np
 
 from tkinter import *
 from time import sleep
-# from matplotlib.pyplot import imread
 from PIL import Image, ImageChops, ImageOps
 from gpiozero import LightSensor, Buzzer
-# from scipy.linalg import norm
 from numpy import sum, average
 from picamera import PiCamera
+# from scipy.linalg import norm
+# from matplotlib.pyplot import imread
 
 ############################################################
 ##                      Global Variables                  ##
@@ -46,8 +46,10 @@ def CompareImages():
     global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER
     
     INDEX = 0
+    thres = int(THRESHOLD)
+    ReverseThreshold(thres)
     thres = int(REVTHRESHOLD)
-    
+
     print(thres)
 
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
@@ -58,7 +60,7 @@ def CompareImages():
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
-    # define the function to compute MSE between two images
+    # compute MSE between two images
     def mse(img1, img2):
         h, w = img1.shape
         diff = cv2.subtract(img1, img2)
