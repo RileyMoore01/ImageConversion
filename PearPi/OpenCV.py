@@ -3,7 +3,7 @@ import sys
 import cv2
 import numpy as np
 # import easygui
-# import wiringpi
+# import wiringp
 
 from tkinter import *
 from time import sleep
@@ -24,6 +24,9 @@ BUTTON_HEIGHT = 150
 BUTTON_WIDTH = 150
 INDEX = 0
 BUZZER = Buzzer(17)
+
+# SENSOR = GPIO.input(11)
+# GPIO.setmode(GPIO.BOARD)
 
 ############################################################
 ##                      Main                              ##
@@ -70,12 +73,10 @@ def CompareImages():
     print("Image matching Error between the two images:",error)
     
     if error > thres:
+        diff = cv2.resize(diff, (750,400))
         cv2.imshow("difference", diff)
-        BUZZER.on()
-        sleep(1)
-        BUZZER.off()
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
     #Grayscale
     #img1 = img1.convert('L')
@@ -259,7 +260,7 @@ timeDelaySubButton.place(x=740, y=135)
 ############################################################
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
     , sliderlength=50, length=400, bg='white', showvalue=False)
-slider.place(x=20, y=475)
+slider.place(x=20, y=450)
 
 
 
