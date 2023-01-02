@@ -38,6 +38,7 @@ def ReverseThreshold(thres):
     result = 0
     while (thres < 100):
         result += 1
+        thres += 1
     REVTHRESHOLD = result
 
 
@@ -49,8 +50,6 @@ def CompareImages():
     thres = int(THRESHOLD)
     ReverseThreshold(thres)
     thres = int(REVTHRESHOLD)
-
-    print(thres)
 
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
     img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
