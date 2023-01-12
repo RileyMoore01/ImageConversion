@@ -1,3 +1,6 @@
+<h1>How to use</h1>
+1.) Make sure everything is plugged in and powered
+
 <h1>Notes</h1>
 There is only 2 3.3 VDC GPIO pins, which will have to be used by the laser and laser receiver. Then we will need an external fan as it is the easiest replacement.
 
