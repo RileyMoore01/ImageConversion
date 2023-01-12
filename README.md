@@ -1,19 +1,16 @@
 <h1>Notes</h1>
 There is only 2 3.3 VDC GPIO pins, which will have to be used by the laser and laser receiver. Then we will need an external fan as it is the easiest replacement.
 
-Needed ToDo:
-  Photoelectric sensor
-  Draw on image
-
--------------------------------
-
+<h1>Camera Setup</h1>
 raspistill -o ~/Pictures/name
   -vf to flip the camera
 
+<h1>Laser setup</h1>
 Laser:
      Pin 17 (9 down from the first row)
      Ground - Pin 20 (One up and one over)
      
+<h1>Other Hardware</h1>
 Fan:
   Pin 1 (Red)
   Ground - Pin 14 (white)
