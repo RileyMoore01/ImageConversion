@@ -24,15 +24,6 @@ Fan: <br />
   Pin 1 (Red) <br />
   Ground - Pin 14 (white) <br />
   
-<h1>Random Links</h1>
-https://stackoverflow.com/questions/44496249/mark-the-difference-between-2-pictures-in-python
-  
-sensor: https://www.youtube.com/watch?v=LLzRWzszbzQ
-
-https://www.quora.com/How-do-you-connect-a-photoelectric-sensor-to-a-Raspberry-pi
-
-https://community.element14.com/learn/learning-center/stem-academy/b/blog/posts/reading-a-photo-sensor-with-the-raspberry-pi-b
-
 <h1>Touch Drivers</h1> <br />
 sudo apt-get install build-essential git cmake pkg-config libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev libatlas-base-dev gfortran
 
@@ -46,3 +37,13 @@ sudo apt install -y build-essential cmake pkg-config libjpeg-dev libtiff5-dev li
 
 <h1>Required pip install's</h1><br />
 - sudo apt install python3-opencv <br />
+
+
+<h1>Random Links</h1>
+https://stackoverflow.com/questions/44496249/mark-the-difference-between-2-pictures-in-python
+  
+sensor: https://www.youtube.com/watch?v=LLzRWzszbzQ
+
+https://www.quora.com/How-do-you-connect-a-photoelectric-sensor-to-a-Raspberry-pi
+
+https://community.element14.com/learn/learning-center/stem-academy/b/blog/posts/reading-a-photo-sensor-with-the-raspberry-pi-b
