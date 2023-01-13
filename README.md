@@ -10,7 +10,7 @@ There is only 2 3.3 VDC GPIO pins, which will have to be used by the laser and l
 1.) Open terminanl and use command "sudo raspi-config" <br />
 2.) Select Advanced options and tunr on legacy camera <br />
 3.) Reboot <br />
--- Commands --
+-- Commands -- <br />
 raspistill -o ~/Pictures/name
   -vf to flip the camera
 
