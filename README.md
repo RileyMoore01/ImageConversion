@@ -41,4 +41,4 @@ sudo apt install -y build-essential cmake pkg-config libjpeg-dev libtiff5-dev li
 
 
 <h1>Required pip install's</h1><br />
-- pip install opencv-python <br />
+- sudo apt install python3-opencv <br />
