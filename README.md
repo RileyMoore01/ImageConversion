@@ -15,14 +15,14 @@ raspistill -o ~/Pictures/name
   -vf to flip the camera
 
 <h1>Laser setup</h1>
-Laser:
-     Pin 17 (9 down from the first row)
-     Ground - Pin 20 (One up and one over)
+Laser: <br />
+     Pin 17 (9 down from the first row) <br />
+     Ground - Pin 20 (One up and one over) <br />
      
 <h1>Other Hardware</h1>
-Fan:
-  Pin 1 (Red)
-  Ground - Pin 14 (white)
+Fan: <br />
+  Pin 1 (Red) <br />
+  Ground - Pin 14 (white) <br />
   
 <h1>Random Links</h1>
 https://stackoverflow.com/questions/44496249/mark-the-difference-between-2-pictures-in-python
