@@ -85,27 +85,6 @@ def CompareImages():
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-    #Grayscale
-    #img1 = img1.convert('L')
-    #img2 = img2.convert('L')
-
-    #Threshold
-#    img1 = img1.point(lambda p: 255 if p > 45 else 0)
-#    img2 = img2.point(lambda p: 255 if p > 45 else 0)
-
-    #Monochrome
-#    img1 = img1.convert('1')
-#    img2 = img2.convert('1')
-
-    # diff = ImageChops.difference(img1, img2)
-
-    # if diff.getbbox():
-        # BUZZER.on()
-        # sleep(1)
-        # BUZZER.off()
-        # diff.show()
-        #16x20
-
 def distance():
     
     # set Trigger to HIGH
