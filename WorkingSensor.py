@@ -1,3 +1,6 @@
+############################################################
+##                        Imports                         ##
+############################################################
 import subprocess
 import sys
 import cv2
@@ -41,7 +44,7 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 ############################################################
-##                      Main                              ##
+##                Image Operations                        ##
 ############################################################
 
 def ReverseThreshold(thres):
@@ -120,6 +123,10 @@ def captureImage():
     global INDEX
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/pic'+str(INDEX)+'.jpg']),shell=True)
 
+   
+############################################################
+##                      Main                              ##
+############################################################
 def main():
     global TIMEDELAY
     sleep(TIMEDELAY)
@@ -152,7 +159,7 @@ win.wm_title("Pear Pi")
 
 
 ############################################################
-##                      Functions                         ##
+##                   UI Functions                         ##
 ############################################################
 def RunProgram():
     print("*** Running program ***")
