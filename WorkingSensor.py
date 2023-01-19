@@ -54,6 +54,8 @@ def ReverseThreshold(thres):
         result += 1
         thres += 1
     REVTHRESHOLD = result
+    
+ # ----------------------------------------------------------------
 
 def CompareImages():
     global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER
@@ -88,6 +90,7 @@ def CompareImages():
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
+ # ----------------------------------------------------------------
 def distance():
     
     # set Trigger to HIGH
@@ -118,6 +121,7 @@ def distance():
  
     return distance
 
+# ----------------------------------------------------------------
 
 def captureImage():
     global INDEX
@@ -165,6 +169,8 @@ def RunProgram():
     print("*** Running program ***")
     main()
 
+# ----------------------------------------------------------------
+
 def PositionCamera():
     print("*** Turning on the camera ***")
     camera = PiCamera()
@@ -173,15 +179,21 @@ def PositionCamera():
     camera.stop_preview()
     camera.close()
 
+ # ----------------------------------------------------------------
+ 
 def TakeReferenceImage():
     print("*** Taking reference Image ***")
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
+
+# ----------------------------------------------------------------
 
 def Slider(val):
     global THRESHOLD
     THRESHOLD = val
     displayThreshold.config(text=f'{THRESHOLD}')
 
+# ----------------------------------------------------------------
+ 
 def TimeDelayAdd():
     global TIMEDELAY
     if TIMEDELAY >= 0:
@@ -192,6 +204,8 @@ def TimeDelayAdd():
         timeDelayDisplay.config(timeDelayDisplay.place(x=840, y=65))
     else:
         timeDelayDisplay.config(timeDelayDisplay.place(x=820, y=65))
+
+# ----------------------------------------------------------------
 
 def TimeDelaySub():
     global TIMEDELAY
