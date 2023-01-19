@@ -3,6 +3,7 @@ import sys
 import cv2
 import numpy as np
 import RPi.GPIO as GPIO
+import time
 # import easygui
 # import wiringp
 
@@ -28,11 +29,11 @@ INDEX = 0
 BUZZER = Buzzer(17)
 
 #GPIO Mode (BOARD / BCM)
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
  
 #set GPIO Pins
-GPIO_TRIGGER = 12
-GPIO_ECHO = 18
+GPIO_TRIGGER = 18
+GPIO_ECHO = 24
  
 #set GPIO direction (IN / OUT)
 # GPIO.setwarnings(False)
@@ -150,7 +151,7 @@ def main():
         while True:
             dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
-            if (dist < 200):
+            if (dist > 200):
                 sleep(TIMEDELAY)
                 captureImage()
                 CompareImages()
