@@ -47,16 +47,16 @@ def CompareImages():
     #remove this portion to a seperate container file
 
     #Grayscale
-    #img1 = img1.convert('L')
-    #img2 = img2.convert('L')
+    img1 = img1.convert('L')
+    img2 = img2.convert('L')
 
     #Threshold
-#    img1 = img1.point(lambda p: 255 if p > 45 else 0)
-#    img2 = img2.point(lambda p: 255 if p > 45 else 0)
+    img1 = img1.point(lambda p: 255 if p > 45 else 0)
+    img2 = img2.point(lambda p: 255 if p > 45 else 0)
 
     #Monochrome
-#    img1 = img1.convert('1')
-#    img2 = img2.convert('1')
+    img1 = img1.convert('1')
+    img2 = img2.convert('1')
 
     diff = ImageChops.difference(img1, img2)
 
