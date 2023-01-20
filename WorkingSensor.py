@@ -86,8 +86,10 @@ def CompareImages():
     
     if error > thres:
         diff = cv2.resize(diff, (750,400))
+        BUZZER.on()
         cv2.imshow("difference", diff)
         cv2.waitKey(0)
+        BUZZER.off()
         cv2.destroyAllWindows()
 
  # ----------------------------------------------------------------
@@ -108,7 +110,6 @@ def distance():
     while GPIO.input(GPIO_ECHO) == 0:
         StartTime = time.time()
         
-    
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
           StopTime = time.time() 
