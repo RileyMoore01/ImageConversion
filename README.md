@@ -54,3 +54,5 @@ sensor: https://www.youtube.com/watch?v=LLzRWzszbzQ
 https://www.quora.com/How-do-you-connect-a-photoelectric-sensor-to-a-Raspberry-pi
 
 https://community.element14.com/learn/learning-center/stem-academy/b/blog/posts/reading-a-photo-sensor-with-the-raspberry-pi-b
+
+https://stackoverflow.com/questions/52240652/tkinter-ability-to-click-on-other-buttons-while-script-is-running
