@@ -221,6 +221,7 @@ def TimeDelaySub():
 
 def clickExitButton():
     exit()
+    #root.destory()
 
 
 ############################################################
