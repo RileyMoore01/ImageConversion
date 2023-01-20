@@ -22,6 +22,8 @@ from picamera import PiCamera
 ############################################################
 ##                      Global Variables                  ##
 ############################################################
+
+# Primitive variables -------------------------------
 THRESHOLD = 0
 REVTHRESHOLD = 0
 TIMEDELAY = 0
@@ -31,6 +33,7 @@ BUTTON_WIDTH = 150
 INDEX = 0
 BUZZER = Buzzer(17)
 
+# GPIO variables -----------------------------------
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
  
@@ -132,6 +135,7 @@ def captureImage():
 ############################################################
 ##                      Main                              ##
 ############################################################
+
 def main():
     global TIMEDELAY
     sleep(TIMEDELAY)
@@ -148,7 +152,7 @@ def main():
                 CompareImages()
             time.sleep(0.5)
  
-        # Reset by pressing CTRL + C
+    # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
         GPIO.cleanup()
@@ -157,6 +161,7 @@ def main():
 ############################################################
 ##                      Window                            ##
 ############################################################
+
 win=Tk()
 win.geometry("1050x535")
 win.config(bg='white')
@@ -166,6 +171,7 @@ win.wm_title("Pear Pi")
 ############################################################
 ##                   UI Functions                         ##
 ############################################################
+
 def RunProgram():
     print("*** Running program ***")
     main()
@@ -303,6 +309,7 @@ timeDelaySubButton.place(x=740, y=135)
 ############################################################
 ##                      Slider                            ##
 ############################################################
+
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
     , sliderlength=50, length=400, bg='white', showvalue=False)
 slider.place(x=20, y=450)
