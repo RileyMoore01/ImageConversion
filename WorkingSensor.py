@@ -172,12 +172,14 @@ win.wm_title("Pear Pi")
 ##                   UI Functions                         ##
 ############################################################
 
+# Run Sensor & Image Conversion
 def RunProgram():
     print("*** Running program ***")
     main()
 
 # ----------------------------------------------------------------
 
+# Allows the user to see what the camera sees temporarily
 def PositionCamera():
     print("*** Turning on the camera ***")
     camera = PiCamera()
@@ -188,12 +190,14 @@ def PositionCamera():
 
  # ----------------------------------------------------------------
  
+ # Takes reference image to compare once program is started
 def TakeReferenceImage():
     print("*** Taking reference Image ***")
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 # ----------------------------------------------------------------
 
+# Controls the slider UI logic
 def Slider(val):
     global THRESHOLD
     THRESHOLD = val
@@ -201,6 +205,7 @@ def Slider(val):
 
 # ----------------------------------------------------------------
  
+ # Adds time to the time delay feature
 def TimeDelayAdd():
     global TIMEDELAY
     if TIMEDELAY >= 0:
@@ -214,6 +219,7 @@ def TimeDelayAdd():
 
 # ----------------------------------------------------------------
 
+# Subtracts time from the time delay feature
 def TimeDelaySub():
     global TIMEDELAY
     if TIMEDELAY > 0:
@@ -225,6 +231,9 @@ def TimeDelaySub():
     else:
         timeDelayDisplay.config(timeDelayDisplay.place(x=815, y=65))
 
+# ----------------------------------------------------------------
+      
+ # Exit the program entirely
 def clickExitButton():
     exit()
     #root.destory()
@@ -336,4 +345,3 @@ timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 25), bg='white
 timeLabel.place(x=775, y=10)
 
 win.mainloop()
-
