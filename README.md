@@ -30,7 +30,19 @@ Fan: <br />
   Pin 1 (Red) <br />
   Ground - Pin 14 (white) <br />
   Enable I2C in raspi-config <br />
+ 
+ <h1>Autostart </h1><br />
+  <p> Make a desktop command: </p>
+  <t /><p>mkdir /home/pearpi/.config/autostart/</p>
+  <t /><p>nano pearpi.desktop in that directory</p>
   
+  <p>
+    [Desktop Entry]<br />
+    Name = PearPi<br />
+    Type = Application<br />
+    Comment = some comment here<br />
+    Exec = /usr/bin/python {codePathHere}.py<br />
+  </p>
 <h1>Touch Drivers</h1> <br />
 sudo apt-get install build-essential git cmake pkg-config libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev libatlas-base-dev gfortran
 
