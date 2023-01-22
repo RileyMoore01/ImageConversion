@@ -38,13 +38,14 @@ DISTANCE = 0
 # GPIO variables -----------------------------------
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
- 
+
 #set GPIO Pins
 GPIO_TRIGGER = 18
 GPIO_ECHO = 24
- 
-#set GPIO direction (IN / OUT)
+
 # GPIO.setwarnings(False)
+
+#set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
@@ -60,7 +61,7 @@ def ReverseThreshold(thres):
         thres += 1
     REVTHRESHOLD = result
     
- # ----------------------------------------------------------------
+# ----------------------------------------------------------------
 
 def CompareImages():
     global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER
@@ -72,7 +73,7 @@ def CompareImages():
 
     img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
     img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
-#   img2 = img2.resize(img1.size)
+    #   img2 = img2.resize(img1.size)
 
     # convert the images to grayscale
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -89,6 +90,7 @@ def CompareImages():
     error, diff = mse(img1, img2)
     print("Image matching Error between the two images:",error)
     
+    # If there is a difference, let the team know
     if error > thres:
         diff = cv2.resize(diff, (750,400))
         BUZZER.on()
@@ -97,18 +99,18 @@ def CompareImages():
         cv2.destroyAllWindows()
         BUZZER.off()
 
- # ----------------------------------------------------------------
+# ----------------------------------------------------------------
 def distance():
     
     start = time.time()
     
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
-     
+
     # set Trigger after 0.01ms to LOW
     time.sleep(0.0001)
     GPIO.output(GPIO_TRIGGER, False)
- 
+
     StartTime = time.time()
     StopTime = time.time()
     print("--- Calculating Time ---")
@@ -147,7 +149,7 @@ def captureImage():
     global INDEX
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/pic'+str(INDEX)+'.jpg']),shell=True)
 
-   
+
 ############################################################
 ##                      Main                              ##
 ############################################################
@@ -202,6 +204,7 @@ win.wm_title("Pear Pi")
 ############################################################
 
 # Run Sensor & Image Conversion
+# ----------------------------------------------------------------
 def RunProgram():
     global RUNNING
     
@@ -214,11 +217,15 @@ def RunProgram():
         
         print("--- Running program ---")
         startProgram()
+# ----------------------------------------------------------------
+
 
 # Exit the program entirely
+# ----------------------------------------------------------------
 def clickExitButton():
     sys.exit()
     #root.destory()
+# ----------------------------------------------------------------
 
 
 # Allows the user to see what the camera sees temporarily
@@ -230,25 +237,29 @@ def PositionCamera():
     sleep(10)
     camera.stop_preview()
     camera.close()
+# ----------------------------------------------------------------
 
- # ----------------------------------------------------------------
- 
- # Takes reference image to compare once program is started
+
+# Takes reference image to compare once program is started
+# ----------------------------------------------------------------
 def TakeReferenceImage():
     print("*** Taking reference Image ***")
     subprocess.call((['raspistill -o /home/pearpi/Desktop/Images/ref.jpg']),shell=True)
 
 # ----------------------------------------------------------------
 
+
 # Controls the slider UI logic
+# ----------------------------------------------------------------
 def Slider(val):
     global THRESHOLD
     THRESHOLD = val
     displayThreshold.config(text=f'{THRESHOLD}')
-
 # ----------------------------------------------------------------
- 
- # Adds time to the time delay feature
+
+
+# Adds time to the time delay feature
+# ----------------------------------------------------------------
 def TimeDelayAdd():
     global TIMEDELAY
     if TIMEDELAY >= 0:
@@ -259,10 +270,11 @@ def TimeDelayAdd():
         timeDelayDisplay.config(timeDelayDisplay.place(x=840, y=65))
     else:
         timeDelayDisplay.config(timeDelayDisplay.place(x=820, y=65))
-
 # ----------------------------------------------------------------
 
+
 # Subtracts time from the time delay feature
+# ----------------------------------------------------------------
 def TimeDelaySub():
     global TIMEDELAY
     if TIMEDELAY > 0:
@@ -291,6 +303,7 @@ positionLabel.config(font=('Helvatical bold', 10), bg='white')
 positionButton= Button(win, image=positionIcon,command= PositionCamera,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 positionButton.place(x=0,y=10)
+# ---------------------------------------------------------------------
 
 
 # Reference Image Button  ---------------------------------------------------------------
@@ -303,6 +316,7 @@ referenceLabel.config(font=('Helvatical bold', 5), bg='white')
 refButton = Button(win, image=referenceIcon,command= TakeReferenceImage,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 refButton.place(x=220,y =10)
+# ---------------------------------------------------------------------
 
 
 # Run program button  -------------------------------------------------------------------
@@ -315,6 +329,8 @@ runProgramLabel.config(font=('Helvatical bold', 5), bg='white')
 runButton = Button(win, image=runIcon,command= RunProgram,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 runButton.place(x=800,y=300)
+# ---------------------------------------------------------------------
+
 
 # Exit program button  -------------------------------------------------------------------
 exitIcon = PhotoImage(file='/home/pearpi/Desktop/iconExit.gif')
@@ -326,6 +342,7 @@ exitLabel.config(font=('Helvatical bold', 5), bg='white')
 exitButton = Button(win, image=exitIcon,command=clickExitButton,borderwidth=0, highlightthickness=0
     , height=BUTTON_HEIGHT, width=BUTTON_WIDTH, bg='white')
 exitButton.place(x=450,y =10)
+# ---------------------------------------------------------------------
 
 
 # Time Delay Button(s)  --------------------------------------------------------------------
@@ -339,6 +356,7 @@ timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 timeDelayAddButton = Button(win, image=TimeDelayAddImage,command= TimeDelayAdd, borderwidth=0, highlightthickness=0,
     height=100, width=100, bg='white')
 timeDelayAddButton.place(x=870, y=135)
+# ---------------------------------------------------------------------
 
 
 TimeDelaySubImage = PhotoImage(file='/home/pearpi/Desktop/subtract.gif')
@@ -350,7 +368,7 @@ timeDelayLabel.config(font=('Helvatical bold', 5), bg='white')
 timeDelaySubButton = Button(win, image=TimeDelaySubImage,command= TimeDelaySub, borderwidth=0, highlightthickness=0
     , height=100, width=100, bg='white')
 timeDelaySubButton.place(x=740, y=135)
-
+# ---------------------------------------------------------------------
 
 
 ############################################################
@@ -362,26 +380,41 @@ slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
 slider.place(x=20, y=450)
 
 
-
 ############################################################
 ##                      Labels                            ##
 ############################################################
 
+# ---------------------------------------------------------------------
 display = Label(win, text="Detail", font=('Helvetica bold', 30), bg='white')
 display.place(x=30, y=350)
+# ---------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------
 thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 18), bg='white')
 thresRange.place(x=50, y=400)
+# ---------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------
 displayThreshold = Label(win, text=f"{THRESHOLD}", font=('Helvetica bold', 50), bg='white')
 displayThreshold.place(x=170, y=350)
+# ---------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------
 timeDelayDisplay = Label(win, text=f"{TIMEDELAY}", font=('Helvetica bold', 40), bg='white')
 timeDelayDisplay.place(x=840, y=65)
+# ---------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------
 timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 25), bg='white')
 timeLabel.place(x=775, y=10)
+# ---------------------------------------------------------------------
 
+
+# ---------------------------------------------------------------------
 if (RUNNING):
     displayProgramRunning = Label(win, text="Software is running", font=('Helvetica bold', 20), bg='blue')
     displayProgramRunning.place(x=300, y=350)
@@ -391,5 +424,6 @@ else:
     
 sesnorReading = Label(win, text=f"Distance(cm): {DISTANCE}", font = ('Helvetica bold', 20), bg='white')
 sesnorReading.place(x=20, y=250)
+# ---------------------------------------------------------------------
 
 win.mainloop()
