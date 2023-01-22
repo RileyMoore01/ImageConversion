@@ -99,6 +99,9 @@ def CompareImages():
 
  # ----------------------------------------------------------------
 def distance():
+    
+    start = time.time()
+    
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
      
@@ -114,13 +117,19 @@ def distance():
     try:
         while GPIO.input(GPIO_ECHO) == 0:
             StartTime = time.time()
+            if (StartTime - start > 1):
+                break
+            
     except TimeoutException:
         print("Echo Pin is broken")
     
     # save time of arrival
     try:
         while GPIO.input(GPIO_ECHO) == 1:
-            StopTime = time.time() 
+            StopTime = time.time()
+            if StartTime - start > 1:
+                break
+            
     except TimeoutException:
         print("Echo Pin is alive")
     
