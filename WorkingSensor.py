@@ -33,6 +33,7 @@ BUTTON_WIDTH = 150
 INDEX = 0
 BUZZER = Buzzer(17)
 RUNNING = False
+DISTANCE = 0
 
 # GPIO variables -----------------------------------
 #GPIO Mode (BOARD / BCM)
@@ -93,8 +94,8 @@ def CompareImages():
         BUZZER.on()
         cv2.imshow("difference", diff)
         cv2.waitKey(0)
-        BUZZER.off()
         cv2.destroyAllWindows()
+        BUZZER.off()
 
  # ----------------------------------------------------------------
 def distance():
@@ -158,6 +159,8 @@ def startProgram():
             if RUNNING:
                 idx += 1
                 dist = distance()
+                DISTANCE = dist
+                sesnorReading.config(text=f"Distance(cm): {DISTANCE} cm")
                 print ("Measured Distance = %.1f cm" % dist)
                 if (dist > 200):
                     sleep(TIMEDELAY)
@@ -195,8 +198,11 @@ def RunProgram():
     
     if (RUNNING):
         RUNNING = False
+        displayProgramRunning.config(text="Software is inactive", bg="red")
     else:
         RUNNING = True
+        displayProgramRunning.config(text="Software is active", bg='green')
+        
         print("--- Running program ---")
         startProgram()
 
@@ -366,5 +372,15 @@ timeDelayDisplay.place(x=840, y=65)
 
 timeLabel = Label(win, text="Time Delay", font=('Helvetica bold', 25), bg='white')
 timeLabel.place(x=775, y=10)
+
+if (RUNNING):
+    displayProgramRunning = Label(win, text="Software is running", font=('Helvetica bold', 20), bg='blue')
+    displayProgramRunning.place(x=300, y=350)
+else:
+    displayProgramRunning = Label(win, text="Software is inactive", font=('Helvetica bold', 20), bg='red')
+    displayProgramRunning.place(x=750, y=480)
+    
+sesnorReading = Label(win, text=f"Distance(cm): {DISTANCE}", font = ('Helvetica bold', 20), bg='white')
+sesnorReading.place(x=20, y=250)
 
 win.mainloop()
