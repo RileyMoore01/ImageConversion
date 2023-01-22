@@ -19,6 +19,7 @@ from picamera import PiCamera
 # from scipy.linalg import norm
 # from matplotlib.pyplot import imread
 
+
 ############################################################
 ##                      Global Variables                  ##
 ############################################################
@@ -99,7 +100,10 @@ def CompareImages():
         cv2.destroyAllWindows()
         BUZZER.off()
 
-# ----------------------------------------------------------------
+
+############################################################
+##                      Distance                          ##
+############################################################
 def distance():
     
     start = time.time()
@@ -140,7 +144,7 @@ def distance():
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2, because there and back
     distance = (TimeElapsed * 34300) / 2
- 
+
     return distance
 
 # ----------------------------------------------------------------
@@ -188,10 +192,11 @@ def startProgram():
         GPIO.cleanup()
 
 
-# --------------------------------------------------
+
 ############################################################
 ##                      Window                            ##
 ############################################################
+
 
 win=Tk()
 win.geometry("1050x535")
@@ -425,5 +430,6 @@ else:
 sesnorReading = Label(win, text=f"Distance(cm): {DISTANCE}", font = ('Helvetica bold', 20), bg='white')
 sesnorReading.place(x=20, y=250)
 # ---------------------------------------------------------------------
+
 
 win.mainloop()
