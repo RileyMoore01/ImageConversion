@@ -32,6 +32,7 @@ BUTTON_HEIGHT = 150
 BUTTON_WIDTH = 150
 INDEX = 0
 BUZZER = Buzzer(17)
+RUNNING = False
 
 # GPIO variables -----------------------------------
 #GPIO Mode (BOARD / BCM)
@@ -97,7 +98,6 @@ def CompareImages():
 
  # ----------------------------------------------------------------
 def distance():
-    
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
      
@@ -110,12 +110,18 @@ def distance():
     print("--- Calculating Time ---")
     
     # save StartTime
-    while GPIO.input(GPIO_ECHO) == 0:
-        StartTime = time.time()
-        
+    try:
+        while GPIO.input(GPIO_ECHO) == 0:
+            StartTime = time.time()
+    except TimeoutException:
+        print("Echo Pin is broken")
+    
     # save time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
-          StopTime = time.time() 
+    try:
+        while GPIO.input(GPIO_ECHO) == 1:
+            StopTime = time.time() 
+    except TimeoutException:
+        print("Echo Pin is alive")
     
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
@@ -136,28 +142,39 @@ def captureImage():
 ##                      Main                              ##
 ############################################################
 
-def main():
-    global TIMEDELAY
-    sleep(TIMEDELAY)
-    captureImage()
-    CompareImages()
+def startProgram():
+    global TIMEDELAY, RUNNING, THRESHOLD
+    RUNNING = True
 
     try:
+        idx = 0
         while True:
-            dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
-            if (dist > 200):
-                sleep(TIMEDELAY)
-                captureImage()
-                CompareImages()
-            time.sleep(0.5)
- 
+            if idx % 1 == 0:
+                win.update()
+                print("--- Updating root Task ---")
+                if (RUNNING == False):
+                    print("--- Program is no longer running ---")
+                
+            if RUNNING:
+                idx += 1
+                dist = distance()
+                print ("Measured Distance = %.1f cm" % dist)
+                if (dist > 200):
+                    sleep(TIMEDELAY)
+                    captureImage()
+                    CompareImages()
+                time.sleep(0.5)
+            else:
+                print("--- Breaking Program ---")
+                break
+
     # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
         GPIO.cleanup()
 
 
+# --------------------------------------------------
 ############################################################
 ##                      Window                            ##
 ############################################################
@@ -174,12 +191,23 @@ win.wm_title("Pear Pi")
 
 # Run Sensor & Image Conversion
 def RunProgram():
-    print("*** Running program ***")
-    main()
+    global RUNNING
+    
+    if (RUNNING):
+        RUNNING = False
+    else:
+        RUNNING = True
+        print("--- Running program ---")
+        startProgram()
 
-# ----------------------------------------------------------------
+# Exit the program entirely
+def clickExitButton():
+    sys.exit()
+    #root.destory()
+
 
 # Allows the user to see what the camera sees temporarily
+# ----------------------------------------------------------------
 def PositionCamera():
     print("*** Turning on the camera ***")
     camera = PiCamera()
@@ -232,11 +260,6 @@ def TimeDelaySub():
         timeDelayDisplay.config(timeDelayDisplay.place(x=815, y=65))
 
 # ----------------------------------------------------------------
-      
- # Exit the program entirely
-def clickExitButton():
-    exit()
-    #root.destory()
 
 
 ############################################################
