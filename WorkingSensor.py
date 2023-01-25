@@ -420,6 +420,24 @@ timeLabel.place(x=775, y=10)
 
 
 # ---------------------------------------------------------------------
+positionLabel = Label(win, text="Position", font=('Helvetica bold', 25), bg='white')
+positionLabel.place(x=, y=)
+# ---------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------
+referenceLabel = Label(win, text="Reference", font=('Helvetica bold', 25), bg='white')
+referenceLabel.place(x=, y=)
+# ---------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------
+exitLabel = Label(win, text="Exit GUI", font=('Helvetica bold', 25), bg='white')
+exitLabel.place(x=, y=)
+# ---------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------
 if (RUNNING):
     displayProgramRunning = Label(win, text="Software is running", font=('Helvetica bold', 20), bg='blue')
     displayProgramRunning.place(x=300, y=350)
