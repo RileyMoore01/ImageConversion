@@ -181,6 +181,10 @@ def startProgram():
                     sleep(TIMEDELAY)
                     captureImage()
                     CompareImages()
+                elif (dist < 50): 
+                    sleep(TIMEDELAY)
+                    captureImage()
+                    CompareImages()
                 time.sleep(0.5)
             else:
                 print("--- Breaking Program ---")
@@ -421,19 +425,19 @@ timeLabel.place(x=775, y=10)
 
 # ---------------------------------------------------------------------
 positionLabel = Label(win, text="Position", font=('Helvetica bold', 25), bg='white')
-positionLabel.place(x=, y=)
+#positionLabel.place(x=, y=)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
 referenceLabel = Label(win, text="Reference", font=('Helvetica bold', 25), bg='white')
-referenceLabel.place(x=, y=)
+#referenceLabel.place(x=, y=)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
 exitLabel = Label(win, text="Exit GUI", font=('Helvetica bold', 25), bg='white')
-exitLabel.place(x=, y=)
+#exitLabel.place(x=, y=)
 # ---------------------------------------------------------------------
 
 
@@ -448,6 +452,7 @@ else:
 sesnorReading = Label(win, text=f"Distance(cm): {DISTANCE}", font = ('Helvetica bold', 20), bg='white')
 sesnorReading.place(x=20, y=250)
 # ---------------------------------------------------------------------
+
 
 
 win.mainloop()
