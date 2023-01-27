@@ -34,6 +34,7 @@ BUTTON_WIDTH = 150
 INDEX = 0
 BUZZER = Buzzer(17)
 RUNNING = False
+VOID = False
 DISTANCE = 0
 
 # GPIO variables -----------------------------------
@@ -96,8 +97,8 @@ def CompareImages():
         diff = cv2.resize(diff, (750,400))
         BUZZER.on()
         cv2.imshow("difference", diff)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        cv2.waitKey(10000)
+        cv2.destroyWindow("difference")
         BUZZER.off()
 
 
@@ -159,7 +160,7 @@ def captureImage():
 ############################################################
 
 def startProgram():
-    global TIMEDELAY, RUNNING, THRESHOLD
+    global TIMEDELAY, RUNNING, THRESHOLD, VOID
     RUNNING = True
 
     try:
@@ -175,17 +176,29 @@ def startProgram():
                 idx += 1
                 dist = distance()
                 DISTANCE = dist
-                sesnorReading.config(text=f"Distance(cm): {DISTANCE} cm")
+                sesnorReading.config(text="Distance: %.1f cm" % dist)
                 print ("Measured Distance = %.1f cm" % dist)
+                
                 if (dist > 200):
-                    sleep(TIMEDELAY)
-                    captureImage()
-                    CompareImages()
-                time.sleep(0.5)
+                    if (VOID):
+                        sleep(TIMEDELAY)
+                        VOID = False
+                        captureImage()
+                        CompareImages()
+                elif (dist < 50):
+                    if (VOID):
+                        sleep(TIMEDELAY)
+                        VOID = False
+                        captureImage()
+                        CompareImages()
+                else:
+                    VOID = True
+                time.sleep(1)
+                
             else:
                 print("--- Breaking Program ---")
                 break
-
+            
     # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
@@ -420,20 +433,20 @@ timeLabel.place(x=775, y=10)
 
 
 # ---------------------------------------------------------------------
-positionLabel = Label(win, text="Position", font=('Helvetica bold', 25), bg='white')
-positionLabel.place(x=, y=)
+positionLabel = Label(win, text="Position", font=('Helvetica bold', 15), fg='blue', bg='white')
+positionLabel.place(x=40, y=170)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
-referenceLabel = Label(win, text="Reference", font=('Helvetica bold', 25), bg='white')
-referenceLabel.place(x=, y=)
+referenceLabel = Label(win, text="Reference", font=('Helvetica bold', 15), fg='blue', bg='white')
+referenceLabel.place(x=245, y=170)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
-exitLabel = Label(win, text="Exit GUI", font=('Helvetica bold', 25), bg='white')
-exitLabel.place(x=, y=)
+exitLabel = Label(win, text="Exit GUI", font=('Helvetica bold', 15), fg='blue', bg='white')
+exitLabel.place(x=485, y=170)
 # ---------------------------------------------------------------------
 
 
