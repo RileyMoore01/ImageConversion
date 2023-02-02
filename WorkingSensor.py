@@ -36,6 +36,7 @@ BUZZER = Buzzer(17)
 RUNNING = False
 VOID = False
 DISTANCE = 0
+ERROR = 0
 
 # GPIO variables -----------------------------------
 #GPIO Mode (BOARD / BCM)
@@ -66,7 +67,7 @@ def ReverseThreshold(thres):
 # ----------------------------------------------------------------
 
 def CompareImages():
-    global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER
+    global INDEX, REVTHRESHOLD, THRESHOLD, BUZZER, ERROR
     
     INDEX = 0
     thres = int(THRESHOLD)
@@ -91,6 +92,8 @@ def CompareImages():
 
     error, diff = mse(img1, img2)
     print("Image matching Error between the two images:",error)
+    
+    errorLabel.config(text="Error: %.1f cm" % error)
     
     # If there is a difference, let the team know
     if error > thres:
@@ -212,7 +215,7 @@ def startProgram():
 
 
 win=Tk()
-win.geometry("1050x535")
+win.geometry("1050x835")
 win.config(bg='white')
 win.wm_title("Pear Pi")
 
@@ -394,8 +397,8 @@ timeDelaySubButton.place(x=740, y=135)
 ############################################################
 
 slider = Scale(win, from_=0, to=100, orient=HORIZONTAL, command=Slider
-    , sliderlength=50, length=400, bg='white', showvalue=False)
-slider.place(x=20, y=450)
+    , sliderlength=100, length=400, bg='white', showvalue=False)
+slider.place(x=30, y=490)
 
 
 ############################################################
@@ -404,19 +407,19 @@ slider.place(x=20, y=450)
 
 # ---------------------------------------------------------------------
 display = Label(win, text="Detail", font=('Helvetica bold', 30), bg='white')
-display.place(x=30, y=350)
+display.place(x=30, y=370)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
 thresRange = Label(win, text="(0-100)", font=('Helvetica bold', 18), bg='white')
-thresRange.place(x=50, y=400)
+thresRange.place(x=50, y=420)
 # ---------------------------------------------------------------------
 
 
 # ---------------------------------------------------------------------
 displayThreshold = Label(win, text=f"{THRESHOLD}", font=('Helvetica bold', 50), bg='white')
-displayThreshold.place(x=170, y=350)
+displayThreshold.place(x=170, y=370)
 # ---------------------------------------------------------------------
 
 
@@ -458,8 +461,16 @@ else:
     displayProgramRunning = Label(win, text="Software is inactive", font=('Helvetica bold', 20), bg='red')
     displayProgramRunning.place(x=750, y=480)
     
+
+# ---------------------------------------------------------------------
 sesnorReading = Label(win, text=f"Distance(cm): {DISTANCE}", font = ('Helvetica bold', 20), bg='white')
 sesnorReading.place(x=20, y=250)
+# ---------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------
+errorLabel = Label(win, text=f"Error (%): {ERROR}", font = ('Helvetica bold', 20), bg='white')
+errorLabel.place(x=20, y=300)
 # ---------------------------------------------------------------------
 
 
