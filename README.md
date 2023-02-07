@@ -33,20 +33,19 @@ Fan: <br />
  
  <h1>Autostart </h1><br />
   <p> Make a desktop command: </p>
-  <t /><p>mkdir /home/pearpi/.config/autostart/</p>
-  <t /><p>nano pearpi.desktop in that directory</p>
+  <t /><p><pre>mkdir /home/pearpi/.config/autostart/</pre></p>
+  <t /><p><pre>nano pearpi.desktop in that directory</pre></p>
   
-  <p>
+  <p><pre>
     [Desktop Entry]<br />
     Name = PearPi<br />
     Type = Application<br />
     Comment = some comment here<br />
     Exec = /usr/bin/python {codePathHere}.py<br />
-  </p>
+  </p></pre>
 <h1>Touch Drivers</h1> <br />
-<pre>
-sudo apt-get install build-essential git cmake pkg-config libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev libatlas-base-dev gfortran
-</pre>
+<pre>sudo apt-get install build-essential git cmake pkg-config libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev libatlas-base-dev gfortran</pre>
+
 <pre>git clone https://github.com/Itseez/opencv.git && cd opencv &&git checkout 3.0.0</pre>
 
 <pre>sudo apt-get install build-essential cmake pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libfontconfig1-dev libcairo2-dev libgdk-pixbuf2.0-dev libpango1.0-dev libgtk2.0-dev libgtk-3-dev libatlas-base-dev gfortran libhdf5-dev libhdf5-serial-dev libhdf5-103 python3-pyqt5 python3-dev -y</pre>
