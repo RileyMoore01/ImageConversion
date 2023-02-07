@@ -17,8 +17,8 @@ There is only 2 3.3 VDC GPIO pins, which will have to be used by the laser and l
 2.) Select Advanced options and tunr on legacy camera <br />
 3.) Reboot <br /> <br />
 -- Commands -- <br />
-raspistill -o ~/Pictures/name
-  -vf to flip the camera
+<pre> raspistill -o ~/Pictures/name
+  -vf to flip the camera </pre>
 
 <h1>Laser setup</h1>
 Laser: <br />
