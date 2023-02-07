@@ -1,6 +1,6 @@
 <h1>How to use</h1>
 1.) Make sure everything is plugged in and powered <br />
-2.) Open Python terminal and run PearPiV02.py <br />
+2.) Once you power the raspberry pi, my software will run on OS load<br />
 3.) Navigate through the ui to use the applied features <br />
 
 <h1>Notes</h1>
