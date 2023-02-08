@@ -84,8 +84,15 @@ def CompareImages():
         print("The images have same size and channels")
         difference = cv2.subtract(img1, img2)
         b, g, r = cv2.split(difference)
+        print(b)
+        print("-----------")
+        print(g)
+        print("-----------")
+        print(r)
+        
     if cv2.countNonZero(b) == 0 and cv2.countNonZero(g) == 0 and cv2.countNonZero(r) == 0:
         print("The images are completely Equal")
+    else:
         cv2.imshow("Duplicate", img2)
         cv2.waitKey(5000)
         cv2.destroyAllWindows()
@@ -162,7 +169,7 @@ def distance():
 
     StartTime = time.time()
     StopTime = time.time()
-    print("--- Calculating Time ---")
+    #print("--- Calculating Time ---")
     
     # save StartTime
     try:
@@ -212,7 +219,7 @@ def startProgram():
         while True:
             if idx % 1 == 0:
                 win.update()
-                print("--- Updating root Task ---")
+                #print("--- Updating root Task ---")
                 if (RUNNING == False):
                     print("--- Program is no longer running ---")
                 
