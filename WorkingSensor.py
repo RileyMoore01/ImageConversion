@@ -75,13 +75,13 @@ def CompareImages():
     ReverseThreshold(thres)
     thres = int(REVTHRESHOLD)
 
-    #img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
-    #img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
+    img1 = cv2.imread("/home/pearpi/Desktop/Images/ref.jpg")
+    img2 = cv2.imread("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
     #   img2 = img2.resize(img1.size)
 
     # convert the images to grayscale
-    #img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    #img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
     # compute MSE between two images
     def mse(img1, img2):
@@ -91,46 +91,47 @@ def CompareImages():
         mse = err/(float(h*w))
         return mse, diff
 
-    #error, diff = mse(img1, img2)
-    #print("Image matching Error between the two images:",error)
+    error, diff = mse(img1, img2)
+    print("Image matching Error between the two images:",error)
     
-    #errorLabel.config(text="Error: %.1f cm" % error)
+    errorLabel.config(text="Error: %.1f cm" % error)
     
     # If there is a difference, let the team know
-    #if error > thres:
-    #    diff = cv2.resize(diff, (750,400))
-    #    BUZZER.on()
-    #    cv2.imshow("difference", diff)
-    #    cv2.waitKey(10000)
-    #    cv2.destroyWindow("difference")
-    #    BUZZER.off()
+    if error > thres:
+        diff = cv2.resize(diff, (750,400))
+        BUZZER.on()
+        cv2.imshow("difference", diff)
+        cv2.waitKey(5000)
+        cv2.destroyAllWindows()
+        #cv2.destroyWindow("difference")
+        BUZZER.off()
         
 # Section 2 -------------- (PIL)
     
-    img1 = Image.open("/home/pearpi/Desktop/Images/ref.jpg")
-    img2 = Image.open("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
+    #img1 = Image.open("/home/pearpi/Desktop/Images/ref.jpg")
+    #img2 = Image.open("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
     #img2 = img2.resize(img1.size)
-    threshold = cv2.threshold(img1, thres, 255, cv2.THRESH_BINARY_INV)
+    #threshold = cv2.threshold(img1, thres, 255, cv2.THRESH_BINARY_INV)
     #Grayscale
-    img1 = img1.convert('L')
-    img2 = img2.convert('L')
+    #img1 = img1.convert('L')
+    #img2 = img2.convert('L')
 
     #Threshold
-    img1 = img1.point(lambda p: 255 if p > thres else 0)
-    img2 = img2.point(lambda p: 255 if p > thres else 0)
+    #img1 = img1.point(lambda p: 255 if p > thres else 0)
+    #img2 = img2.point(lambda p: 255 if p > thres else 0)
 
     #Monochrome
-    img1 = img1.convert('1')
-    img2 = img2.convert('1')
+    #img1 = img1.convert('1')
+    #img2 = img2.convert('1')
 
-    diff = ImageChops.difference(img1, img2)
+    #diff = ImageChops.difference(img1, img2)
 
-    if diff.getbbox():
+    #if diff.getbbox():
         #diff = cv2.resize(diff, (750,400))
-        BUZZER.on()
-        BUZZER.off()
-        diff.show()
-        cv2.imshow("difference", threshold)
+        #BUZZER.on()
+        #BUZZER.off()
+        #diff.show()
+        #cv2.imshow("difference", threshold)
         #16x20
 
 
