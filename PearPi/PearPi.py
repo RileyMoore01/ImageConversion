@@ -28,7 +28,6 @@ BUZZER = Buzzer(17)
 ############################################################
 
 
-
 def CompareImages():
     global INDEX, THRESHOLD, BUZZER
     INDEX = 0
