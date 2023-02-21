@@ -108,31 +108,31 @@ def CompareImages():
         
 # Section 2 -------------- (PIL)
     
-    #img1 = Image.open("/home/pearpi/Desktop/Images/ref.jpg")
-    #img2 = Image.open("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
-    #img2 = img2.resize(img1.size)
-    #threshold = cv2.threshold(img1, thres, 255, cv2.THRESH_BINARY_INV)
-    #Grayscale
-    #img1 = img1.convert('L')
-    #img2 = img2.convert('L')
+    # img1 = Image.open("/home/pearpi/Desktop/Images/ref.jpg")
+    # img2 = Image.open("/home/pearpi/Desktop/Images/pic"+str(INDEX)+".jpg")
+    # img2 = img2.resize(img1.size)
+    # threshold = cv2.threshold(img1, thres, 255, cv2.THRESH_BINARY_INV)
+    # Grayscale
+    # img1 = img1.convert('L')
+    # img2 = img2.convert('L')
 
     #Threshold
     #img1 = img1.point(lambda p: 255 if p > thres else 0)
     #img2 = img2.point(lambda p: 255 if p > thres else 0)
 
-    #Monochrome
-    #img1 = img1.convert('1')
-    #img2 = img2.convert('1')
+    # Monochrome
+    # img1 = img1.convert('1')
+    # img2 = img2.convert('1')
 
-    #diff = ImageChops.difference(img1, img2)
+    # diff = ImageChops.difference(img1, img2)
 
-    #if diff.getbbox():
-        #diff = cv2.resize(diff, (750,400))
-        #BUZZER.on()
-        #BUZZER.off()
-        #diff.show()
-        #cv2.imshow("difference", threshold)
-        #16x20
+    # if diff.getbbox():
+    #     diff = cv2.resize(diff, (750,400))
+    #     BUZZER.on()
+    #     BUZZER.off()
+    #     diff.show()
+    #     cv2.imshow("difference", threshold)
+    #     16x20
 
 
 ############################################################
@@ -144,7 +144,7 @@ def distance():
     
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
-
+ 
     # set Trigger after 0.01ms to LOW
     time.sleep(0.0001)
     GPIO.output(GPIO_TRIGGER, False)
